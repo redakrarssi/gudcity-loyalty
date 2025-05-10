@@ -1,0 +1,20 @@
+{
+  "name": "gudcity-loyalty-root",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Root package for GudCity Loyalty project",
+  "scripts": {
+    "dev": "cd project && npm run dev",
+    "build": "cd project && npm run build",
+    "preview": "cd project && npm run preview",
+    "owner": "cd project && node access-dashboard.js owner",
+    "customer": "cd project && node access-dashboard.js customer",
+    "admin": "cd project && node access-dashboard.js admin",
+    "staff": "cd project && node access-dashboard.js staff"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+} 

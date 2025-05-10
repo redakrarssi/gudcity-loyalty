@@ -38,11 +38,14 @@ import NotFound from './pages/NotFound';
 const SetupWizard = lazy(() => import('./pages/onboarding/SetupWizard'));
 
 function App() {
-  const { user, loading } = useAuth();
+  const { user, loading, bypassLogin } = useAuth();
 
   if (loading) {
     return <LoadingScreen />;
   }
+
+  // Helper to determine if route should be accessible
+  const canAccess = () => bypassLogin || !!user;
 
   return (
     <Routes>
@@ -62,7 +65,7 @@ function App() {
         path="/setup" 
         element={
           <Suspense fallback={<LoadingScreen />}>
-            {user ? <SetupWizard /> : <Navigate to="/login" />}
+            {canAccess() ? <SetupWizard /> : <Navigate to="/login" />}
           </Suspense>
         } 
       />
@@ -72,24 +75,24 @@ function App() {
         element={<DashboardLayout />}
         path="/dashboard"
       >
-        <Route index element={user ? <Dashboard /> : <Navigate to="/login" />} />
-        <Route path="programs" element={user ? <Programs /> : <Navigate to="/login" />} />
-        <Route path="customers" element={user ? <Customers /> : <Navigate to="/login" />} />
-        <Route path="transactions" element={user ? <Transactions /> : <Navigate to="/login" />} />
-        <Route path="reports" element={user ? <Reports /> : <Navigate to="/login" />} />
-        <Route path="settings" element={user ? <Settings /> : <Navigate to="/login" />} />
+        <Route index element={canAccess() ? <Dashboard /> : <Navigate to="/login" />} />
+        <Route path="programs" element={canAccess() ? <Programs /> : <Navigate to="/login" />} />
+        <Route path="customers" element={canAccess() ? <Customers /> : <Navigate to="/login" />} />
+        <Route path="transactions" element={canAccess() ? <Transactions /> : <Navigate to="/login" />} />
+        <Route path="reports" element={canAccess() ? <Reports /> : <Navigate to="/login" />} />
+        <Route path="settings" element={canAccess() ? <Settings /> : <Navigate to="/login" />} />
       </Route>
       
       {/* Customer portal */}
       <Route element={<CustomerLayout />} path="/portal">
-        <Route index element={<CustomerPortal />} />
-        <Route path="rewards" element={<CustomerRewards />} />
-        <Route path="profile" element={<CustomerProfile />} />
+        <Route index element={canAccess() ? <CustomerPortal /> : <Navigate to="/customer/login" />} />
+        <Route path="rewards" element={canAccess() ? <CustomerRewards /> : <Navigate to="/customer/login" />} />
+        <Route path="profile" element={canAccess() ? <CustomerProfile /> : <Navigate to="/customer/login" />} />
       </Route>
 
       {/* Admin routes */}
       <Route element={<AdminLayout />} path="/admin">
-        <Route index element={<AdminDashboard />} />
+        <Route index element={canAccess() ? <AdminDashboard /> : <Navigate to="/login" />} />
       </Route>
       
       {/* 404 and redirects */}

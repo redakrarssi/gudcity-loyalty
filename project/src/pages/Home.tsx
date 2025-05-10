@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CircleUser, ChevronRight, CreditCard, Star, Users, ShoppingBag, Trophy } from 'lucide-react';
 import Button from '../components/ui/Button';
+import QuickAccess from '../components/ui/QuickAccess';
 
 const Home: React.FC = () => {
   return (
@@ -27,6 +28,11 @@ const Home: React.FC = () => {
           </div>
         </div>
       </header>
+
+      {/* Development Quick Access */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <QuickAccess />
+      </div>
 
       {/* Hero section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-16 sm:py-24">

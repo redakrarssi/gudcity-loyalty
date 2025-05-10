@@ -8,6 +8,7 @@ import { Mail, Lock } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import { useAuth } from '../../hooks/useAuth';
+import LoginBypass from '../../components/ui/LoginBypass';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -17,7 +18,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Login: React.FC = () => {
-  const { login } = useAuth();
+  const { login, bypassLogin } = useAuth();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -108,6 +109,8 @@ const Login: React.FC = () => {
           </Button>
         </div>
       </form>
+      
+      <LoginBypass />
       
       <div className="mt-6">
         <div className="relative">
