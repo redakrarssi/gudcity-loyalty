@@ -1,0 +1,38 @@
+# GitHub Repository Setup Instructions
+
+Follow these steps to push your code to GitHub:
+
+## Step 1: Create a new repository on GitHub
+1. Go to https://github.com/new
+2. Enter repository name: `gudcity-loyalty`
+3. Add a description (optional): "Customer loyalty platform for businesses"
+4. Choose public or private repository
+5. Do NOT initialize with README, .gitignore, or license (we already have these)
+6. Click "Create repository"
+
+## Step 2: Link your local repository to GitHub
+Once your GitHub repository is created, run these commands:
+
+```
+# Replace YOUR_USERNAME with your GitHub username
+git remote add origin https://github.com/YOUR_USERNAME/gudcity-loyalty.git
+
+# Push your code to GitHub
+git push -u origin main
+```
+
+If you're prompted for credentials, enter your GitHub username and password or personal access token.
+
+## Alternative: Command Line Setup
+If you prefer to create the repository from the command line, you can use the GitHub CLI:
+
+```
+# Install GitHub CLI if you don't have it
+# Then login and create repository
+gh auth login
+gh repo create gudcity-loyalty --private --source=. --remote=origin
+git push -u origin main
+```
+
+## Verification
+After pushing, visit your GitHub profile to verify the repository has been created and all files are uploaded correctly. 

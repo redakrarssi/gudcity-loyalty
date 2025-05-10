@@ -16,6 +16,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@hookform/resolvers": "^3.3.4",
+    "@neondatabase/serverless": "^1.0.0",
     "chart.js": "^4.4.2",
     "date-fns": "^3.4.0",
     "firebase": "^10.8.1",
